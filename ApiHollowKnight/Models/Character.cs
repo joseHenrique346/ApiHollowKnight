@@ -26,7 +26,7 @@ namespace ApiHollowKnight.Models
         public int CharactersTypeId { get; set; }
 
         [Required]
-        [ForeignKey(nameof(CharactersSpecies))]
+        [ForeignKey(nameof(CharacterSpecies))]
         public int CharactersSpeciesId { get; set; }
 
         [Required]

@@ -1,4 +1,5 @@
 ﻿using ApiHollowKnight.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiHollowKnight.Repositories
 {
@@ -11,30 +12,56 @@ namespace ApiHollowKnight.Repositories
              _context = context;
         }
 
-        //public IEnumerable<Characters> GetCharacter()
-        //{
-        //    return _context.
-        //}
-
-        //public Characters GetCharacters(int id)
-        //{
-        //    return _context.Characters.FirsOrDefault.
-        //}
-
-
-        public Characters Create(Characters character)
+        public IEnumerable<Character> GetCharacter()
         {
-            throw new NotImplementedException();
+            return _context.Characters.ToList();
         }
 
-        public Characters Update(Characters character)
+        public Character GetCharacters(int id)
         {
-            throw new NotImplementedException();
+            var character = _context.Characters.FirstOrDefault(p => p.CharactersId == id);
+            if (character is null)
+            {
+                throw new ArgumentNullException(nameof(character));
+            } 
+            return character;
         }
 
-        public Characters Delete(int id)
+
+        public Character Create(Character character)
         {
-            throw new NotImplementedException();
+            if (character == null)
+            {
+                throw new ArgumentNullException(nameof(character));
+            }
+
+            _context.Add(character);
+            _context.SaveChanges();
+            return character;
+        }
+
+        public Character Update(Character character)
+        {
+            if (character == null)
+            {
+                throw new ArgumentNullException(nameof(character));
+            }
+
+            _context.Entry(character).State = EntityState.Modified;
+            _context.SaveChanges();
+            return character;
+        }
+
+        public Character Delete(int id)
+        {
+            var character = _context.Characters.FirstOrDefault(c => c.CharactersId == id);
+            if (character is null)
+            {
+                throw new ArgumentNullException(nameof(character));
+            }
+            _context.Characters.Remove(character);
+            _context.SaveChanges();
+            return character;
         }
 
     }
