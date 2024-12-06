@@ -1,6 +1,6 @@
 ﻿namespace ApiHollowKnight.Models
 {
-    public class CharactersSpecies
+    public class CharacterSpecies
     {
     }
 }

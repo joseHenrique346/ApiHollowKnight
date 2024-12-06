@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApiHollowKnight.Models
 {
-    [Table("Characters")]
-    public class Characters
+    [Table("Character")]
+    public class Character
     {
         [Key]
         public int CharactersId { get; set; }
