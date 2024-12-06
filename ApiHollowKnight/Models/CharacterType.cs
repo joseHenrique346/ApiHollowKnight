@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ApiHollowKnight.Models
 {
     [Table("CharactersTypes")]
-    public class CharactersTypes
+    public class CharacterType
     {
         [Key]
         public int CharacterTypeId { get; set; }
