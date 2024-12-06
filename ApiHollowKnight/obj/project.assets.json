@@ -482,19 +482,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\josef\\.nuget\\packages\\": {}
+    "C:\\Users\\arthu_dzh116v\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\josef\\source\\repos\\ApiHollowKnight\\ApiHollowKnight\\ApiHollowKnight.csproj",
+      "projectUniqueName": "C:\\Users\\arthu_dzh116v\\Source\\Repos\\ApiHollowKnight\\ApiHollowKnight\\ApiHollowKnight.csproj",
       "projectName": "ApiHollowKnight",
-      "projectPath": "C:\\Users\\josef\\source\\repos\\ApiHollowKnight\\ApiHollowKnight\\ApiHollowKnight.csproj",
-      "packagesPath": "C:\\Users\\josef\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\josef\\source\\repos\\ApiHollowKnight\\ApiHollowKnight\\obj\\",
+      "projectPath": "C:\\Users\\arthu_dzh116v\\Source\\Repos\\ApiHollowKnight\\ApiHollowKnight\\ApiHollowKnight.csproj",
+      "packagesPath": "C:\\Users\\arthu_dzh116v\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\arthu_dzh116v\\Source\\Repos\\ApiHollowKnight\\ApiHollowKnight\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\josef\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\arthu_dzh116v\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -502,7 +507,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -519,8 +523,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "direct"
-      }
+        "auditMode": "all"
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -554,7 +559,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
