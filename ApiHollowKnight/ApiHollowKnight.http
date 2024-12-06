@@ -1,0 +1,6 @@
+@ApiHollowKnight_HostAddress = http://localhost:5151
+
+GET {{ApiHollowKnight_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
