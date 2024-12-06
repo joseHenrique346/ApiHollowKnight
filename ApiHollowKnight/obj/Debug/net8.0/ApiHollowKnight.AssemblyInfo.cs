@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiHollowKnight")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+24a26e32fbb33f0f161170050c7b3c751a754c8b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3253c21430c430f89f832a49d1c3f81e97bf1bd2")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiHollowKnight")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiHollowKnight")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
