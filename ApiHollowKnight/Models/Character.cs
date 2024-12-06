@@ -22,7 +22,7 @@ namespace ApiHollowKnight.Models
         public string CharactersGender { get; set; }
 
         [Required]
-        [ForeignKey(nameof(CharactersTypes))]
+        [ForeignKey(nameof(CharacterType))]
         public int CharactersTypeId { get; set; }
 
         [Required]
@@ -30,7 +30,7 @@ namespace ApiHollowKnight.Models
         public int CharactersSpeciesId { get; set; }
 
         [Required]
-        [ForeignKey(nameof(Places))]
+        [ForeignKey(nameof(Place))]
         public int PlacesId { get; set; }
 
         [Required]
