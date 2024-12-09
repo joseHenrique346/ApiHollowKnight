@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ApiHollowKnight.Models
 {
@@ -16,6 +17,7 @@ namespace ApiHollowKnight.Models
         [Required]
         public string ImageURL { get; set; }
 
-        public ICollection<Character> Characters { get; set; }
+        [JsonIgnore]
+        public ICollection<Character>? Characters { get; set; }
     }
 }
