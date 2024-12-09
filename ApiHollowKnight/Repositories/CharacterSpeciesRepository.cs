@@ -20,7 +20,7 @@ namespace ApiHollowKnight.Repositories
         public  CharacterSpecies GetCharacterSpecies(int id)
         {
             var character = _context.CharactersSpecies.FirstOrDefault(p => p.CharactersSpeciesId == id);
-            if (character == null)
+            if (character is null)
             {
                 throw new ArgumentException(nameof(character));
             }
