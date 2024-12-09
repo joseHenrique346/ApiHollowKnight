@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ApiHollowKnight.Controllers
 {
+    [Route("[controller]")]
+    [ApiController]
     public class CharacterTypeController : ControllerBase
     {
         private readonly ICharacterTypeRepository _repository;
