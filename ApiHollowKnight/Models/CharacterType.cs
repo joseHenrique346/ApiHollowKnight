@@ -15,7 +15,7 @@ namespace ApiHollowKnight.Models
 
         [Required]
         [StringLength(140)]
-        public string? NameCharacterTypeDescription { get; set; }
+        public string? CharacterTypeDescription { get; set; }
 
         public ICollection<Character> Characters { get; set; }
     }

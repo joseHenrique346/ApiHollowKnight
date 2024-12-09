@@ -1,25 +1,25 @@
 ﻿using ApiHollowKnight.Models;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace ApiHollowKnight.Repositories
 {
-    public class CharacterSpeciesRepository : ICharacterSpeciesRepository
+    public class CharacterTypeRepository : ICharacterTypeRepository
     {
         private readonly AppDbContext _context;
-        public CharacterSpeciesRepository(AppDbContext context)
+
+        public CharacterTypeRepository(AppDbContext context)
         {
              _context = context;
         }
 
-        public IEnumerable<CharacterSpecies> GetCharactersSpecies()
+        public IEnumerable<CharacterType> GetCharactersType()
         {
-            return _context.CharactersSpecies.ToList();
+            return _context.CharactersTypes.ToList();
         }
 
-        public  CharacterSpecies GetCharacterSpecies(int id)
+        public CharacterType GetCharacterType(int id)
         {
-            var character = _context.CharactersSpecies.FirstOrDefault(p => p.CharactersSpeciesId == id);
+            var character = _context.CharactersTypes.FirstOrDefault(p => p.CharacterTypeId == id);
             if (character is null)
             {
                 throw new ArgumentException(nameof(character));
@@ -27,7 +27,7 @@ namespace ApiHollowKnight.Repositories
             return character;
         }
 
-        public CharacterSpecies Create(CharacterSpecies character)
+        public CharacterType Create(CharacterType character)
         {
             if (character is null)
             {
@@ -36,11 +36,10 @@ namespace ApiHollowKnight.Repositories
 
             _context.Add(character);
             _context.SaveChanges();
-
             return character;
         }
 
-        public CharacterSpecies Update(CharacterSpecies character)
+        public CharacterType Update(CharacterType character)
         {
             if (character is null)
             {
@@ -52,14 +51,13 @@ namespace ApiHollowKnight.Repositories
             return character;
         }
 
-        public CharacterSpecies Delete(int id)
+        public CharacterType Delete(int id)
         {
-            var character = _context.CharactersSpecies.FirstOrDefault(c => c.CharactersSpeciesId == id);
+            var character = _context.CharactersTypes.FirstOrDefault(p=>p.CharacterTypeId == id);
             if (character is null)
             {
-                throw new ArgumentNullException(nameof(character));
+                throw new ArgumentException(nameof(character));
             }
-
             _context.Remove(character);
             _context.SaveChanges();
             return character;
