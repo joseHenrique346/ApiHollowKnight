@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICharacterSpeciesRepository, CharacterSpeciesRepository>();
 builder.Services.AddScoped<ICharacterTypeRepository, CharacterTypeRepository>();
 builder.Services.AddScoped<ICharactersRepository, CharacterRepository>();
-builder.Services.AddScoped<IPlacesRepository, PlaceRepository>();
+builder.Services.AddScoped<IPlacesRepository, PlacesRepository>();
 
 string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
