@@ -12,12 +12,12 @@ namespace ApiHollowKnight.Repositories
              _context = context;
         }
 
-        public IEnumerable<Character> GetCharacter()
+        public IEnumerable<Character> GetCharacters()
         {
             return _context.Characters.ToList();
         }
 
-        public Character GetCharacters(int id)
+        public Character GetCharacter(int id)
         {
             var character = _context.Characters.FirstOrDefault(p => p.CharactersId == id);
             if (character is null)
