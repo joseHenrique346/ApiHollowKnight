@@ -18,14 +18,14 @@ namespace ApiHollowKnight.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Character>> Get()
         {
-            var character = _repository.GetCharacter().ToList();
+            var character = _repository.GetCharacters().ToList();
             return Ok(character);
         }
 
         [HttpGet("{id}")]
         public ActionResult<Character> Get(int id)
         {
-            var character = _repository.GetCharacters(id);
+            var character = _repository.GetCharacter(id);
             return Ok(character);
         }
 

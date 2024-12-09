@@ -4,8 +4,8 @@ namespace ApiHollowKnight.Repositories
 {
     public interface ICharactersRepository
     {
-        IEnumerable<Character> GetCharacter();
-        Character GetCharacters(int id);
+        IEnumerable<Character> GetCharacters();
+        Character GetCharacter(int id);
         Character Create(Character character);
         Character Update(Character character);
         Character Delete(int id);
