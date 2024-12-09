@@ -15,5 +15,7 @@ namespace ApiHollowKnight.Models
 
         [Required]
         public string ImageURL { get; set; }
+
+        public ICollection<Character> Characters { get; set; }
     }
 }
