@@ -11,11 +11,11 @@ namespace ApiHollowKnight.Models
         public int CharacterTypeId { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(64)]
         public string? NameCharacterType { get; set; }
 
         [Required]
-        [StringLength(140)]
+        [StringLength(512)]
         public string? CharacterTypeDescription { get; set; }
 
         [JsonIgnore]
