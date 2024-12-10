@@ -1,12 +1,10 @@
 ﻿using System.Text.Json.Serialization;
-
-namespace ApiHollowKnight.Arguments.Places
+namespace ApiHollowKnight.Arguments.CharacterSpecies
 {
     [method: JsonConstructor]
-    public class InputCreateUpdatePlaces(string name, string imageUrl, string description)
+    public class InputUpdateSpecies(int id, string name, string description)
     {
         public string Name { get; private set; } = name;
-        public string ImageURL { get; private set; } = imageUrl;
         public string Description { get; private set; } = description;
     }
 }

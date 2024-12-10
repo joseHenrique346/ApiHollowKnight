@@ -2,7 +2,7 @@
 namespace ApiHollowKnight.Arguments.CharacterType
 {
     [method: JsonConstructor]
-    public class InputCreateUpdateTypes(int id, string? name, string? description)
+    public class InputUpdateTypes(int id, string? name, string? description)
     {
         public string? Name { get; private set; } = name;
 

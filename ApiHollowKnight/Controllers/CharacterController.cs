@@ -31,7 +31,7 @@ namespace ApiHollowKnight.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] InputCreateUpdateCharacters character)
+        public ActionResult Post([FromBody] InputCreateCharacters character)
         {
             var createdCharacter = _repository.Create(new Character { Name = character.Name, Description = character.Description, Gender = character.Gender,
                                                                         TypeId = character.TypeId, SpeciesId = character.SpeciesId, PlacesId = character.PlacesId,
@@ -44,7 +44,7 @@ namespace ApiHollowKnight.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] InputCreateUpdateCharacters character)
+        public ActionResult Put(int id, [FromBody] InputUpdateCharacters character)
         {
             var getCharacter = _repository.Get(c => c.Id == id); 
              if (getCharacter is null)
