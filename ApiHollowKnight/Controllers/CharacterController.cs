@@ -1,4 +1,5 @@
-﻿using ApiHollowKnight.Models;
+﻿using ApiHollowKnight.Arguments.Character;
+using ApiHollowKnight.Models;
 using ApiHollowKnight.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,27 +26,55 @@ namespace ApiHollowKnight.Controllers
         [HttpGet("{id}")]
         public ActionResult<Character> Get(int id)
         {
-            //var character = _repository.Get();
+            var character = _repository.Get(c => c.Id == id);
             return Ok(character);
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] Character character)
+        public ActionResult Post([FromBody] InputCreatedCharacters character)
         {
-            _repository.Create(character);
-            return Ok(character);
+            var createdCharacter = _repository.Create(new Character { Name = character.Name, Description = character.Description, Gender = character.Gender,
+                                                                        TypeId = character.TypeId, SpeciesId = character.SpeciesId, PlacesId = character.PlacesId,
+                                                                        Health = character.Health, Color = character.Color, ImageUrl = character.ImageUrl });
+
+            return Ok(new OutputCharacters(createdCharacter.Id, createdCharacter.Name, createdCharacter.Description,
+                                            createdCharacter.Gender, createdCharacter.TypeId, createdCharacter.SpeciesId, 
+                                            createdCharacter.PlacesId, createdCharacter.Health, createdCharacter.Color, 
+                                            createdCharacter.ImageUrl));
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Character character)
+        public ActionResult Put(int id, [FromBody] InputCreatedCharacters character)
         {
-            return Ok(_repository.Update(character));
+            var getCharacter = _repository.Get(c => c.Id == id); 
+             if (getCharacter is null)
+            {
+                return NotFound();
+            }
+            
+             getCharacter.Name = character.Name;
+             getCharacter.Description = character.Description;
+             getCharacter.Gender = character.Gender;
+             getCharacter.TypeId = character.TypeId;
+             getCharacter.SpeciesId = character.SpeciesId;
+             getCharacter.PlacesId = character.PlacesId;
+             getCharacter.Health = character.Health;
+             getCharacter.Color = character.Color;
+             getCharacter.ImageUrl = character.ImageUrl;
+
+            //return Ok(_repository.Update(character));
         }
 
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            return Ok(_repository.Delete(id));
+            var categoria = _repository.Get(c => c.Id == id);
+            if (categoria is null)
+            {
+                return NotFound();
+            }
+            var categoriaExcluida = _repository.Delete(categoria);
+            return Ok(categoriaExcluida);
         }
     }
 }
