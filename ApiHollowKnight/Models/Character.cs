@@ -5,11 +5,8 @@ using System.Text.Json.Serialization;
 namespace ApiHollowKnight.Models
 {
     [Table("Character")]
-    public class Character
+    public class Character : BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [StringLength(80)]
         public string Name { get; set; }
@@ -53,5 +50,29 @@ namespace ApiHollowKnight.Models
 
         [Required]
         public string ImageURL { get; set; }
+
+        public Character(string name, string description, string gender, 
+                         int typeId, CharacterType? characterType, int speciesId, 
+                         CharacterSpecies? characterSpecies, int placesId, Place? place, 
+                         decimal health, string color, string imageURL)
+        {
+            Name = name;
+            Description = description;
+            Gender = gender;
+            TypeId = typeId;
+            CharacterType = characterType;
+            SpeciesId = speciesId;
+            CharacterSpecies = characterSpecies;
+            PlacesId = placesId;
+            Place = place;
+            Health = health;
+            Color = color;
+            ImageURL = imageURL;
+        }
+
+        public Character()
+        {
+             
+        }
     }
 }

@@ -1,25 +1,28 @@
-﻿using ApiHollowKnight.Repositories.Interfaces;
+﻿using ApiHollowKnight.Models;
+using ApiHollowKnight.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace ApiHollowKnight.Repositories.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public abstract class Repository<T> : IRepository<T> where T : BaseEntity, new()
     {
         protected readonly AppDbContext _context;
+        protected readonly DbSet<T> _dbSet;
         public Repository(AppDbContext context)
         {
-             _context = context;
+            _context = context;
+            _dbSet = context.Set<T>();
         }
 
-        public IEnumerable<T> GetAll()
+        public List<T> GetAll()
         {
-            return _context.Set<T>().ToList();
+            return [.. _dbSet];
         }
 
-        public T? Get(Expression<Func<T, bool>> predicate)
+        public T? Get(int id)
         {
-            return _context.Set<T>().FirstOrDefault(predicate);
+            return _dbSet.Find(id);
         }
         public T Update(T entity)
         {
@@ -30,16 +33,22 @@ namespace ApiHollowKnight.Repositories.Repositories
 
         public T Create(T entity)
         {
-            _context.Set<T>().Add(entity);
+            _dbSet.Add(entity);
             _context.SaveChanges();
             return entity;
         }
 
-        public T Delete(T entity)
+        public bool Delete(T entity)
         {
-            _context.Set<T>().Remove(entity);
+            _dbSet.Remove(entity);
             _context.SaveChanges();
-            return entity;
+            return true;
+        }
+        public bool Delete(int id)
+        {
+            _dbSet.Remove(new T { Id = id });
+            _context.SaveChanges();
+            return true;
         }
     }
 }

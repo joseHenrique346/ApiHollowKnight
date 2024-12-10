@@ -2,7 +2,7 @@
 
 namespace ApiHollowKnight.Repositories.Interfaces
 {
-    public interface IPlacesRepository : IRepository<Character>
+    public interface IPlacesRepository : IRepository<Place>
     {
     }
 }

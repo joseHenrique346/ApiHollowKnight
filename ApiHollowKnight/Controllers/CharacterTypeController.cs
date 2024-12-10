@@ -12,20 +12,20 @@ namespace ApiHollowKnight.Controllers
 
         public CharacterTypeController(ICharacterTypeRepository repository)
         {
-             _repository = repository;
+            _repository = repository;
         }
 
         [HttpGet]
         public ActionResult<CharacterType> Get()
         {
-            var character = _repository.GetCharactersType().ToList();
+            var character = _repository.GetAll();
             return Ok(character);
         }
 
         [HttpGet("{id}")]
         public ActionResult<CharacterType> Get(int id)
         {
-            var character = _repository.GetCharacterType(id);
+            var character = _repository.Get(id);
             return Ok(character);
         }
 

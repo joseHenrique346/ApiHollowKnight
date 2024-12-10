@@ -4,7 +4,5 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApiHollowKnight.Repositories.Repositories
 {
-    public class CharacterRepository(AppDbContext context) : Repository<Character>(context), ICharactersRepository
-    {
-    }
+    public class CharacterRepository(AppDbContext context) : Repository<Character>(context), ICharactersRepository { }
 }

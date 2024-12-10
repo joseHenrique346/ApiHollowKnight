@@ -22,149 +22,149 @@ namespace ApiHollowKnight.Migrations
 
             modelBuilder.Entity("ApiHollowKnight.Models.Character", b =>
                 {
-                    b.Property<int>("CharactersId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("CharactersId"));
-
-                    b.Property<string>("CharactersDescription")
-                        .IsRequired()
-                        .HasMaxLength(512)
-                        .HasColumnType("varchar(512)");
-
-                    b.Property<string>("CharactersGender")
-                        .IsRequired()
-                        .HasMaxLength(12)
-                        .HasColumnType("varchar(12)");
-
-                    b.Property<string>("CharactersName")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("varchar(80)");
-
-                    b.Property<int>("CharactersSpeciesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CharactersTypeId")
-                        .HasColumnType("int");
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Color")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(512)
+                        .HasColumnType("varchar(512)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("varchar(12)");
+
                     b.Property<decimal>("Health")
                         .HasColumnType("decimal(10,2)");
 
-                    b.Property<string>("ImagemUrl")
+                    b.Property<string>("ImageURL")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(80)");
 
                     b.Property<int>("PlacesId")
                         .HasColumnType("int");
 
-                    b.HasKey("CharactersId");
+                    b.Property<int>("SpeciesId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("CharactersSpeciesId");
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("CharactersTypeId");
+                    b.HasKey("Id");
 
                     b.HasIndex("PlacesId");
+
+                    b.HasIndex("SpeciesId");
+
+                    b.HasIndex("TypeId");
 
                     b.ToTable("Character");
                 });
 
             modelBuilder.Entity("ApiHollowKnight.Models.CharacterSpecies", b =>
                 {
-                    b.Property<int>("CharactersSpeciesId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("CharactersSpeciesId"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CharactersSpeciesDescription")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(512)
                         .HasColumnType("varchar(512)");
 
-                    b.Property<string>("CharactersSpeciesName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
 
-                    b.HasKey("CharactersSpeciesId");
+                    b.HasKey("Id");
 
                     b.ToTable("CharacterSpecies");
                 });
 
             modelBuilder.Entity("ApiHollowKnight.Models.CharacterType", b =>
                 {
-                    b.Property<int>("CharacterTypeId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("CharacterTypeId"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CharacterTypeDescription")
+                    b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(512)
-                        .HasColumnType("varchar(512)");
+                        .HasMaxLength(140)
+                        .HasColumnType("varchar(140)");
 
-                    b.Property<string>("NameCharacterType")
+                    b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("varchar(64)");
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
 
-                    b.HasKey("CharacterTypeId");
+                    b.HasKey("Id");
 
                     b.ToTable("CharactersTypes");
                 });
 
             modelBuilder.Entity("ApiHollowKnight.Models.Place", b =>
                 {
-                    b.Property<int>("PlaceId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("PlaceId"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(512)
+                        .HasColumnType("varchar(512)");
 
                     b.Property<string>("ImageURL")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Location")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
 
-                    b.Property<string>("PlaceDescription")
-                        .IsRequired()
-                        .HasMaxLength(512)
-                        .HasColumnType("varchar(512)");
-
-                    b.HasKey("PlaceId");
+                    b.HasKey("Id");
 
                     b.ToTable("Places");
                 });
 
             modelBuilder.Entity("ApiHollowKnight.Models.Character", b =>
                 {
+                    b.HasOne("ApiHollowKnight.Models.Place", "Place")
+                        .WithMany("Characters")
+                        .HasForeignKey("PlacesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ApiHollowKnight.Models.CharacterSpecies", "CharacterSpecies")
                         .WithMany("Characters")
-                        .HasForeignKey("CharactersSpeciesId")
+                        .HasForeignKey("SpeciesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ApiHollowKnight.Models.CharacterType", "CharacterType")
                         .WithMany("Characters")
-                        .HasForeignKey("CharactersTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ApiHollowKnight.Models.Place", "Place")
-                        .WithMany("Characters")
-                        .HasForeignKey("PlacesId")
+                        .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

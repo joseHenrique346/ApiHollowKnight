@@ -9,7 +9,7 @@ namespace ApiHollowKnight.Controllers
     [ApiController]
     public class CharacterController : ControllerBase
     {
-        private readonly IRepository<Character> _repository;
+        private readonly ICharactersRepository _repository;
 
         public CharacterController(ICharactersRepository repository)
         {
@@ -26,16 +26,16 @@ namespace ApiHollowKnight.Controllers
         [HttpGet("{id}")]
         public ActionResult<Character> Get(int id)
         {
-            var character = _repository.Get(c => c.Id == id);
+            var character = _repository.Get(id);
             return Ok(character);
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] InputCreateUpdateCharacters character)
+        public ActionResult Create([FromBody] InputCreateUpdateCharacters character)
         {
-            var createdCharacter = _repository.Create(new Character { Name = character.Name, Description = character.Description, Gender = character.Gender,
-                                                                        TypeId = character.TypeId, SpeciesId = character.SpeciesId, PlacesId = character.PlacesId,
-                                                                        Health = character.Health, Color = character.Color, ImageURL = character.ImageUrl });
+            var createdCharacter = _repository.Create(new Character(character.Name, character.Description, character.Gender, 
+                                                      character.TypeId, null, character.SpeciesId, null, character.PlacesId, 
+                                                      null, character.Health, character.Color, character.ImageUrl));
 
             return Ok(new OutputCharacters(createdCharacter.Id, createdCharacter.Name, createdCharacter.Description,
                                             createdCharacter.Gender, createdCharacter.TypeId, createdCharacter.SpeciesId, 
@@ -44,31 +44,44 @@ namespace ApiHollowKnight.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] InputCreateUpdateCharacters character)
+        public ActionResult Update(int id, [FromBody] InputCreateUpdateCharacters character)
         {
-            var getCharacter = _repository.Get(c => c.Id == id); 
+            var getCharacter = _repository.Get(id); 
              if (getCharacter is null)
             {
                 return NotFound();
             }
-            
-             getCharacter.Name = character.Name;
-             getCharacter.Description = character.Description;
-             getCharacter.Gender = character.Gender;
-             getCharacter.TypeId = character.TypeId;
-             getCharacter.SpeciesId = character.SpeciesId;
-             getCharacter.PlacesId = character.PlacesId;
-             getCharacter.Health = character.Health;
-             getCharacter.Color = character.Color;
-             getCharacter.ImageURL = character.ImageUrl;
 
-            //return Ok(_repository.Update(character));
+            getCharacter.Name = character.Name;
+            getCharacter.Description = character.Description;
+            getCharacter.Gender = character.Gender;
+            getCharacter.TypeId = character.TypeId;
+            getCharacter.SpeciesId = character.SpeciesId;
+            getCharacter.PlacesId = character.PlacesId;
+            getCharacter.Health = character.Health;
+            getCharacter.Color = character.Color;
+            getCharacter.ImageURL = character.ImageUrl;
+
+            var updateCharacter = _repository.Update(getCharacter);
+
+            return Ok(new OutputCharacters(
+                updateCharacter.Id,
+                updateCharacter.Name,
+                updateCharacter.Description,
+                updateCharacter.Gender,
+                updateCharacter.TypeId,
+                updateCharacter.SpeciesId,
+                updateCharacter.PlacesId,
+                updateCharacter.Health,
+                updateCharacter.Color,
+                updateCharacter.ImageURL
+                ));
         }
 
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var categoria = _repository.Get(c => c.Id == id);
+            var categoria = _repository.Get(id);
             if (categoria is null)
             {
                 return NotFound();

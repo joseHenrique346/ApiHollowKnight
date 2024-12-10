@@ -10,14 +10,11 @@ namespace ApiHollowKnight.Controllers
     public class CharacterSpeciesController : ControllerBase
     {
 
-        private readonly ICharacterSpeciesRepository _characterRepository;
-        private readonly IRepository<CharacterSpecies> _repository;
+        private readonly ICharacterSpeciesRepository _repository;
 
-        public CharacterSpeciesController(IRepository<CharacterSpecies> repository,
-            ICharacterSpeciesRepository characterRepository)
+        public CharacterSpeciesController(ICharacterSpeciesRepository repository)
         {
-             _repository = repository;
-             _characterRepository = characterRepository;
+            _repository = repository;
         }
 
         [HttpGet]
@@ -26,11 +23,11 @@ namespace ApiHollowKnight.Controllers
             var character = _repository.GetAll();
             return Ok(character);
         }
-         
+
         [HttpGet("{id}")]
         public ActionResult<CharacterSpecies> Get(int id)
         {
-            var character = _repository.GetCharacterSpecies(id);
+            var character = _repository.Get(id);
             return Ok(character);
         }
 
