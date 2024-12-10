@@ -3,7 +3,7 @@
 namespace ApiHollowKnight.Arguments.Places
 {
     [method: JsonConstructor]
-    public class InputCreatedPlaces(int id, string name, string imageUrl, string description)
+    public class OutPutPlaces(int id, string name, string imageUrl, string description)
     {
         public int Id { get; private set; } = id;
         public string Name { get; private set; } = name;
