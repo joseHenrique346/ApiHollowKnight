@@ -17,10 +17,6 @@ namespace ApiHollowKnight.Models
         [Required]
         public string ImageURL { get; set; }
 
-        [Required]
-        [StringLength(512)]
-        public string? PlaceDescription { get; set; }
-
         [JsonIgnore]
         public ICollection<Character>? Characters { get; set; }
     }
