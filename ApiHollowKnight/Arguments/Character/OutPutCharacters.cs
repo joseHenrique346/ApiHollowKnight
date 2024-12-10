@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
-
 namespace ApiHollowKnight.Arguments.Character
+
 {
     
     [method: JsonConstructor]
@@ -17,5 +17,4 @@ namespace ApiHollowKnight.Arguments.Character
         public string Color { get; set; } = color;
         public string ImageURL { get; set; } = imageURL;
     }
-    
 }

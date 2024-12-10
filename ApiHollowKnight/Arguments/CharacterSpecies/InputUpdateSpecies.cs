@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 namespace ApiHollowKnight.Arguments.CharacterSpecies
+
 {
     [method: JsonConstructor]
     public class InputUpdateSpecies(int id, string name, string description)

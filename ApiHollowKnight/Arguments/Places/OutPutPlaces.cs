@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
-
 namespace ApiHollowKnight.Arguments.Places
+
 {
     [method: JsonConstructor]
     public class OutPutPlaces(int id, string name, string imageURL, string description)

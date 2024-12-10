@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
-
 namespace ApiHollowKnight.Arguments.Places
+
 {
     [method: JsonConstructor]
     public class InputCreatePlaces(string name, string imageUrl, string description)
