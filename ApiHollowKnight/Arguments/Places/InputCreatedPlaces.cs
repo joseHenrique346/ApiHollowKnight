@@ -1,6 +1,12 @@
-﻿namespace ApiHollowKnight.Arguments.Places
+﻿using System.Text.Json.Serialization;
+
+namespace ApiHollowKnight.Arguments.Places
 {
-    public class InputCreatedPlaces
+    [method: JsonConstructor]
+    public class InputCreatedPlaces(string name, string imageUrl, string description)
     {
+        public string Name { get; private set; } = name;
+        public string ImageURL { get; private set; } = imageUrl;
+        public string Description { get; private set; } = description;
     }
 }
