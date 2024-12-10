@@ -31,20 +31,20 @@ namespace ApiHollowKnight.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] InputCreatedCharacters character)
+        public ActionResult Post([FromBody] InputCreateUpdateCharacters character)
         {
             var createdCharacter = _repository.Create(new Character { Name = character.Name, Description = character.Description, Gender = character.Gender,
                                                                         TypeId = character.TypeId, SpeciesId = character.SpeciesId, PlacesId = character.PlacesId,
-                                                                        Health = character.Health, Color = character.Color, ImageUrl = character.ImageUrl });
+                                                                        Health = character.Health, Color = character.Color, ImageURL = character.ImageUrl });
 
             return Ok(new OutputCharacters(createdCharacter.Id, createdCharacter.Name, createdCharacter.Description,
                                             createdCharacter.Gender, createdCharacter.TypeId, createdCharacter.SpeciesId, 
                                             createdCharacter.PlacesId, createdCharacter.Health, createdCharacter.Color, 
-                                            createdCharacter.ImageUrl));
+                                            createdCharacter.ImageURL));
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] InputCreatedCharacters character)
+        public ActionResult Put(int id, [FromBody] InputCreateUpdateCharacters character)
         {
             var getCharacter = _repository.Get(c => c.Id == id); 
              if (getCharacter is null)
@@ -60,7 +60,7 @@ namespace ApiHollowKnight.Controllers
              getCharacter.PlacesId = character.PlacesId;
              getCharacter.Health = character.Health;
              getCharacter.Color = character.Color;
-             getCharacter.ImageUrl = character.ImageUrl;
+             getCharacter.ImageURL = character.ImageUrl;
 
             //return Ok(_repository.Update(character));
         }

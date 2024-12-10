@@ -4,7 +4,7 @@ namespace ApiHollowKnight.Arguments.Character
 {
     
     [method: JsonConstructor]
-    public class OutputCharacters(int id, string name, string description, string gender, int typeId, int speciesId, int placesId, decimal health, string color, string imageUrl)
+    public class OutputCharacters(int id, string name, string description, string gender, int typeId, int speciesId, int placesId, decimal health, string color, string imageURL)
     {
         public int Id { get; private set; } = id;
         public string Name { get; set; } = name;
@@ -15,7 +15,7 @@ namespace ApiHollowKnight.Arguments.Character
         public int PlacesId { get; set; } = placesId;
         public decimal Health { get; set; } = health;
         public string Color { get; set; } = color;
-        public string ImageUrl { get; set; } = imagemUrl;
+        public string ImageURL { get; set; } = imageURL;
     }
     
 }
