@@ -1,5 +1,5 @@
 ﻿using ApiHollowKnight.Models;
-using ApiHollowKnight.Repositories;
+using ApiHollowKnight.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiHollowKnight.Controllers
@@ -8,7 +8,7 @@ namespace ApiHollowKnight.Controllers
     [ApiController]
     public class CharacterController : ControllerBase
     {
-        private readonly ICharactersRepository _repository;
+        private readonly IRepository<Character> _repository;
 
         public CharacterController(ICharactersRepository repository)
         {
@@ -18,14 +18,14 @@ namespace ApiHollowKnight.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Character>> Get()
         {
-            var character = _repository.GetCharacters().ToList();
+            var character = _repository.GetAll();
             return Ok(character);
         }
 
         [HttpGet("{id}")]
         public ActionResult<Character> Get(int id)
         {
-            var character = _repository.GetCharacter(id);
+            //var character = _repository.Get();
             return Ok(character);
         }
 
