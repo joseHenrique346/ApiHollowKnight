@@ -1,4 +1,5 @@
-using ApiHollowKnight.Repositories;
+using ApiHollowKnight.Repositories.Interfaces;
+using ApiHollowKnight.Repositories.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Security.Cryptography.Xml;
@@ -14,10 +15,11 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<ICharacterSpeciesRepository, CharacterSpeciesRepository>();
-builder.Services.AddScoped<ICharacterTypeRepository, CharacterTypeRepository>();
+//builder.Services.AddScoped<ICharacterSpeciesRepository, CharacterSpeciesRepository>();
+//builder.Services.AddScoped<ICharacterTypeRepository, CharacterTypeRepository>();
 builder.Services.AddScoped<ICharactersRepository, CharacterRepository>();
-builder.Services.AddScoped<IPlacesRepository, PlacesRepository>();
+//builder.Services.AddScoped<IPlacesRepository, PlacesRepository>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
