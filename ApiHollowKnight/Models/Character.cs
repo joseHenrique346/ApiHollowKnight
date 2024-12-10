@@ -8,30 +8,30 @@ namespace ApiHollowKnight.Models
     public class Character
     {
         [Key]
-        public int CharactersId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(80)]
-        public string CharactersName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [StringLength(512)]
-        public string CharactersDescription { get; set; }
+        public string Description { get; set; }
 
         [Required]
         [StringLength(12)]
-        public string CharactersGender { get; set; }
+        public string Gender { get; set; }
 
         [Required]
         [ForeignKey(nameof(CharacterType))]
-        public int CharactersTypeId { get; set; }
+        public int TypeId { get; set; }
 
         [JsonIgnore]
         public CharacterType? CharacterType { get; set; }
 
         [Required]
         [ForeignKey(nameof(CharacterSpecies))]
-        public int CharactersSpeciesId { get; set; }
+        public int SpeciesId { get; set; }
 
         [JsonIgnore]
         public CharacterSpecies? CharacterSpecies { get; set; }

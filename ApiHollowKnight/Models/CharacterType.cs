@@ -8,15 +8,15 @@ namespace ApiHollowKnight.Models
     public class CharacterType
     {
         [Key]
-        public int CharacterTypeId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(20)]
-        public string? NameCharacterType { get; set; }
+        public string? Name { get; set; }
 
         [Required]
         [StringLength(140)]
-        public string? CharacterTypeDescription { get; set; }
+        public string? Description { get; set; }
 
         [JsonIgnore]
         public ICollection<Character>? Characters { get; set; }
