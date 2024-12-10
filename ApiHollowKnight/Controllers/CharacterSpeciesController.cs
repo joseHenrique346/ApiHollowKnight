@@ -10,17 +10,20 @@ namespace ApiHollowKnight.Controllers
     public class CharacterSpeciesController : ControllerBase
     {
 
-        private readonly ICharacterSpeciesRepository _repository;
+        private readonly ICharacterSpeciesRepository _characterRepository;
+        private readonly IRepository<CharacterSpecies> _repository;
 
-        public CharacterSpeciesController(ICharacterSpeciesRepository repository)
+        public CharacterSpeciesController(IRepository<CharacterSpecies> repository,
+            ICharacterSpeciesRepository characterRepository)
         {
              _repository = repository;
+             _characterRepository = characterRepository;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<CharacterSpecies>> Get()
         {
-            var character = _repository.GetCharactersSpecies().ToList();
+            var character = _repository.GetAll();
             return Ok(character);
         }
          

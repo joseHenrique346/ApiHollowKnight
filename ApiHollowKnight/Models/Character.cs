@@ -52,6 +52,6 @@ namespace ApiHollowKnight.Models
         public string Color { get; set; }
 
         [Required]
-        public string ImagemUrl { get; set; }
+        public string ImageUrl { get; set; }
     }
 }
