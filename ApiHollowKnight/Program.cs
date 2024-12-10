@@ -1,4 +1,5 @@
-using ApiHollowKnight.Repositories;
+using ApiHollowKnight.Repositories.Interfaces;
+using ApiHollowKnight.Repositories.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Security.Cryptography.Xml;

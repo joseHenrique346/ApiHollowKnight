@@ -1,5 +1,5 @@
 ﻿using ApiHollowKnight.Models;
-using ApiHollowKnight.Repositories;
+using ApiHollowKnight.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiHollowKnight.Controllers

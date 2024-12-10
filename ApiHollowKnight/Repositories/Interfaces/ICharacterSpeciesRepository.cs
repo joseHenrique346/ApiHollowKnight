@@ -1,6 +1,6 @@
 ﻿using ApiHollowKnight.Models;
 
-namespace ApiHollowKnight.Repositories
+namespace ApiHollowKnight.Repositories.Interfaces
 {
     public interface ICharacterSpeciesRepository
     {

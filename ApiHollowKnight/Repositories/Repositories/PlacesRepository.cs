@@ -1,14 +1,15 @@
 ﻿using ApiHollowKnight.Models;
+using ApiHollowKnight.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiHollowKnight.Repositories
+namespace ApiHollowKnight.Repositories.Repositories
 {
     public class PlacesRepository : IPlacesRepository
     {
         private readonly AppDbContext _context;
         public PlacesRepository(AppDbContext context)
         {
-             _context = context;
+            _context = context;
         }
 
         public IEnumerable<Place> GetPlaces()
@@ -18,7 +19,7 @@ namespace ApiHollowKnight.Repositories
 
         public Place GetPlace(int id)
         {
-            var place = _context.Places.FirstOrDefault(p=> p.PlaceId == id);
+            var place = _context.Places.FirstOrDefault(p => p.PlaceId == id);
             if (place is null)
             {
                 throw new ArgumentException(nameof(place));
@@ -50,7 +51,7 @@ namespace ApiHollowKnight.Repositories
 
         public Place Delete(int id)
         {
-            var place = _context.Places.FirstOrDefault(p=> p.PlaceId == id);
+            var place = _context.Places.FirstOrDefault(p => p.PlaceId == id);
             if (place is null)
             {
                 throw new ArgumentException(nameof(place));

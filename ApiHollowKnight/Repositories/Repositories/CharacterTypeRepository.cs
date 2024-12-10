@@ -1,7 +1,8 @@
 ﻿using ApiHollowKnight.Models;
+using ApiHollowKnight.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiHollowKnight.Repositories
+namespace ApiHollowKnight.Repositories.Repositories
 {
     public class CharacterTypeRepository : ICharacterTypeRepository
     {
@@ -9,7 +10,7 @@ namespace ApiHollowKnight.Repositories
 
         public CharacterTypeRepository(AppDbContext context)
         {
-             _context = context;
+            _context = context;
         }
 
         public IEnumerable<CharacterType> GetCharactersType()
@@ -53,7 +54,7 @@ namespace ApiHollowKnight.Repositories
 
         public CharacterType Delete(int id)
         {
-            var character = _context.CharactersTypes.FirstOrDefault(p=>p.CharacterTypeId == id);
+            var character = _context.CharactersTypes.FirstOrDefault(p => p.CharacterTypeId == id);
             if (character is null)
             {
                 throw new ArgumentException(nameof(character));

@@ -1,25 +1,26 @@
 ﻿using ApiHollowKnight.Models;
+using ApiHollowKnight.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace ApiHollowKnight.Repositories
+namespace ApiHollowKnight.Repositories.Repositories
 {
     public class CharacterSpeciesRepository : ICharacterSpeciesRepository
     {
         private readonly AppDbContext _context;
         public CharacterSpeciesRepository(AppDbContext context)
         {
-             _context = context;
+            _context = context;
         }
 
         public IEnumerable<CharacterSpecies> GetCharactersSpecies()
         {
-            return _context.CharactersSpecies.ToList();
+            return [.. _context.CharactersSpecies!];
         }
 
-        public  CharacterSpecies GetCharacterSpecies(int id)
+        public CharacterSpecies GetCharacterSpecies(int id)
         {
-            var character = _context.CharactersSpecies.FirstOrDefault(p => p.CharactersSpeciesId == id);
+            var character = _context.CharactersSpecies!.Find(id);
             if (character is null)
             {
                 throw new ArgumentException(nameof(character));

@@ -1,5 +1,5 @@
 ﻿using ApiHollowKnight.Models;
-using ApiHollowKnight.Repositories;
+using ApiHollowKnight.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -28,6 +28,7 @@ namespace ApiHollowKnight.Controllers
         public ActionResult<CharacterSpecies> Get(int id)
         {
             var character = _repository.GetCharacterSpecies(id);
+
             return Ok(character);
         }
 

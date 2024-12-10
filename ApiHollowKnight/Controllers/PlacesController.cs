@@ -1,5 +1,7 @@
-﻿using ApiHollowKnight.Models;
-using ApiHollowKnight.Repositories;
+﻿using ApiHollowKnight.Arguments;
+using ApiHollowKnight.Arguments.Places;
+using ApiHollowKnight.Models;
+using ApiHollowKnight.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiHollowKnight.Controllers
@@ -30,9 +32,10 @@ namespace ApiHollowKnight.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Place> Create(Place place)
+        public ActionResult<Place> Create(InputCreatePlaces inputCreatePlaces)
         {
-            return Ok(_repository.Create(place));
+            var createdPlace = _repository.Create(new Place { Location = inputCreatePlaces.Location, ImageURL = inputCreatePlaces.ImageURL });
+            return Ok(new OutputPlaces(createdPlace.PlaceId, createdPlace.Location, createdPlace.ImageURL));
         }
 
         [HttpPut]

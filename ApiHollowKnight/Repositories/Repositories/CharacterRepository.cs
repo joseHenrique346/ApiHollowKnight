@@ -1,7 +1,8 @@
 ﻿using ApiHollowKnight.Models;
+using ApiHollowKnight.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiHollowKnight.Repositories
+namespace ApiHollowKnight.Repositories.Repositories
 {
     public class CharacterRepository : ICharactersRepository
     {
@@ -9,7 +10,7 @@ namespace ApiHollowKnight.Repositories
 
         public CharacterRepository(AppDbContext context)
         {
-             _context = context;
+            _context = context;
         }
 
         public IEnumerable<Character> GetCharacters()
@@ -23,7 +24,7 @@ namespace ApiHollowKnight.Repositories
             if (character is null)
             {
                 throw new ArgumentNullException(nameof(character));
-            } 
+            }
             return character;
         }
 
