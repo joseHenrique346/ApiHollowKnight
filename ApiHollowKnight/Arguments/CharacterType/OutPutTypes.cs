@@ -1,9 +1,11 @@
 ﻿using ApiHollowKnight.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ApiHollowKnight.Arguments.CharacterType
 {
+    [method: JsonConstructor]
     public class OutPutTypes(int id, string? name, string? description)
     {
         public int Id { get; private set; } = id;

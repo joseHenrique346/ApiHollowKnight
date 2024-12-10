@@ -1,5 +1,7 @@
-﻿namespace ApiHollowKnight.Arguments.CharacterSpecies
+﻿using System.Text.Json.Serialization;
+namespace ApiHollowKnight.Arguments.CharacterSpecies
 {
+    [method: JsonConstructor]
     public class OutPutSpecies(int id, string name, string description)
     {
         public int Id { get; private set; } = id;

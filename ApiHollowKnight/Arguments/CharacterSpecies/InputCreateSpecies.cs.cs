@@ -1,5 +1,7 @@
-﻿namespace ApiHollowKnight.Arguments.CharacterSpecies
+﻿using System.Text.Json.Serialization;
+namespace ApiHollowKnight.Arguments.CharacterSpecies
 {
+    [method: JsonConstructor]
     public class InputCreateSpecies(int id, string name, string description)
     {
         public string Name { get; private set; } = name;
