@@ -6,9 +6,9 @@ using System.Text.Json.Serialization;
 namespace ApiHollowKnight.Arguments.Character
 {
     [method: JsonConstructor]
-    public class InputCreateUpdateCharacters(string name, string description, string gender, int typeId, int speciesId, int placesId, decimal health, string color, string imageUrl)
+    public class InputCreateUpdateCharacters(int name, string description, string gender, int typeId, int speciesId, int placesId, decimal health, string color, string imageUrl)
     {
-        public string Name { get; set; } = name;
+        public int Name { get; set; } = name;
         public string Description { get; set; } = description;
         public string Gender { get; set; } = gender;
         public int TypeId { get; set; } = typeId;

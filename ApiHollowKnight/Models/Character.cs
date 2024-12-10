@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ApiHollowKnight.Arguments.Character;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -73,6 +74,21 @@ namespace ApiHollowKnight.Models
         public Character()
         {
              
+        }
+
+        public static implicit operator OutputCharacters(Character entity)
+        {
+            return new OutputCharacters(
+                entity.Id,
+                entity.Name,
+                entity.Description,
+                entity.Gender,
+                entity.TypeId,
+                entity.SpeciesId,
+                entity.PlacesId,
+                entity.Health,
+                entity.Color,
+                entity.ImageURL);
         }
     }
 }

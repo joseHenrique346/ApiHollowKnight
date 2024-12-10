@@ -2,6 +2,7 @@
 using ApiHollowKnight.Models;
 using ApiHollowKnight.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 
 namespace ApiHollowKnight.Controllers
 {
@@ -33,7 +34,7 @@ namespace ApiHollowKnight.Controllers
         [HttpPost]
         public ActionResult Create([FromBody] InputCreateUpdateCharacters character)
         {
-            var createdCharacter = _repository.Create(new Character(character.Name, character.Description, character.Gender, 
+            var createdCharacter = _repository.Create(new Character(" ", character.Description, character.Gender, 
                                                       character.TypeId, null, character.SpeciesId, null, character.PlacesId, 
                                                       null, character.Health, character.Color, character.ImageUrl));
 
@@ -51,31 +52,9 @@ namespace ApiHollowKnight.Controllers
             {
                 return NotFound();
             }
-
-            getCharacter.Name = character.Name;
-            getCharacter.Description = character.Description;
-            getCharacter.Gender = character.Gender;
-            getCharacter.TypeId = character.TypeId;
-            getCharacter.SpeciesId = character.SpeciesId;
-            getCharacter.PlacesId = character.PlacesId;
-            getCharacter.Health = character.Health;
-            getCharacter.Color = character.Color;
-            getCharacter.ImageURL = character.ImageUrl;
-
+            getCharacter = Converter.Convert(getCharacter, character);
             var updateCharacter = _repository.Update(getCharacter);
-
-            return Ok(new OutputCharacters(
-                updateCharacter.Id,
-                updateCharacter.Name,
-                updateCharacter.Description,
-                updateCharacter.Gender,
-                updateCharacter.TypeId,
-                updateCharacter.SpeciesId,
-                updateCharacter.PlacesId,
-                updateCharacter.Health,
-                updateCharacter.Color,
-                updateCharacter.ImageURL
-                ));
+            return Ok((OutputCharacters)getCharacter);
         }
 
         [HttpDelete("{id}")]
@@ -90,4 +69,22 @@ namespace ApiHollowKnight.Controllers
             return Ok(categoriaExcluida);
         }
     }
+    //public static class Converter criar a classe separada generica para todas
+    //{
+    //    public static T Convert<T, T2>(T classe, T2 input)
+    //    {
+    //        (from i in typeof(T2).GetProperties()
+    //         let value = i.GetValue(input)
+    //         let property = typeof(T).GetProperty(i.Name)
+    //         where property != null
+    //         let _ = property.setProperty(classe, value)
+    //         select true).ToList();
+    //         return classe;
+    //    }
+    //    private static bool setProperty<T>(this PropertyInfo property, T classe, object value)
+    //    {
+    //        property.SetValue(classe, value);
+    //        return true;
+    //    }
+    //}
 }
