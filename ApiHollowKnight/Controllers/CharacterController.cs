@@ -32,11 +32,7 @@ namespace ApiHollowKnight.Controllers
         }
 
         [HttpPost]
-<<<<<<< HEAD
-        public ActionResult Post([FromBody] InputCreateCharacters character)
-=======
         public ActionResult Create([FromBody] InputCreateUpdateCharacters character)
->>>>>>> FinalizandoControllersAttRepositoriesGenerico
         {
             var createdCharacter = _repository.Create(new Character(" ", character.Description, character.Gender, 
                                                       character.TypeId, null, character.SpeciesId, null, character.PlacesId, 
@@ -49,11 +45,7 @@ namespace ApiHollowKnight.Controllers
         }
 
         [HttpPut("{id}")]
-<<<<<<< HEAD
-        public ActionResult Put(int id, [FromBody] InputUpdateCharacters character)
-=======
         public ActionResult Update(int id, [FromBody] InputCreateUpdateCharacters character)
->>>>>>> FinalizandoControllersAttRepositoriesGenerico
         {
             var getCharacter = _repository.Get(id); 
              if (getCharacter is null)
@@ -77,22 +69,22 @@ namespace ApiHollowKnight.Controllers
             return Ok(categoriaExcluida);
         }
     }
-    //public static class Converter criar a classe separada generica para todas
-    //{
-    //    public static T Convert<T, T2>(T classe, T2 input)
-    //    {
-    //        (from i in typeof(T2).GetProperties()
-    //         let value = i.GetValue(input)
-    //         let property = typeof(T).GetProperty(i.Name)
-    //         where property != null
-    //         let _ = property.setProperty(classe, value)
-    //         select true).ToList();
-    //         return classe;
-    //    }
-    //    private static bool setProperty<T>(this PropertyInfo property, T classe, object value)
-    //    {
-    //        property.SetValue(classe, value);
-    //        return true;
-    //    }
-    //}
+    public static class Converter //criar a classe separada generica para todas
+    {
+        public static T Convert<T, T2>(T classe, T2 input)
+    {
+        (from i in typeof(T2).GetProperties()
+         let value = i.GetValue(input)
+         let property = typeof(T).GetProperty(i.Name)
+         where property != null
+         let _ = property.setProperty(classe, value)
+         select true).ToList();
+        return classe;
+    }
+    private static bool setProperty<T>(this PropertyInfo property, T classe, object value)
+    {
+        property.SetValue(classe, value);
+        return true;
+    }
+}
 }
