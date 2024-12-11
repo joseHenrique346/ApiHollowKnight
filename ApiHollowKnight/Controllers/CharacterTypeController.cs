@@ -8,43 +8,49 @@ namespace ApiHollowKnight.Controllers
     [ApiController]
     public class CharacterTypeController : ControllerBase
     {
-        private readonly ICharacterTypeRepository _repository;
+        private readonly IUnitOfWork _uof;
 
-        public CharacterTypeController(ICharacterTypeRepository repository)
+        public CharacterTypeController(IUnitOfWork uof)
         {
-            _repository = repository;
+            _uof = uof;
         }
 
         [HttpGet]
         public ActionResult<CharacterType> Get()
         {
-            var character = _repository.GetAll();
+            var character = _uof.CharacterTypeRepository.GetAll();
             return Ok(character);
         }
 
         [HttpGet("{id}")]
         public ActionResult<CharacterType> Get(int id)
         {
-            var character = _repository.Get(id);
+            var character = _uof.CharacterTypeRepository.Get(id);
             return Ok(character);
         }
 
         [HttpPost]
         public ActionResult<CharacterType> Create(CharacterType character)
         {
-            return Ok(_repository.Create(character));
+            var createdCharacter = _uof.CharacterTypeRepository.Create(character);
+            _uof.Commit();
+            return Ok(createdCharacter);
         }
 
         [HttpPut]
         public ActionResult<CharacterType> Update(CharacterType character)
         {
-            return Ok(_repository.Update(character));
+            var updatedCharacter = _uof.CharacterTypeRepository.Update(character);
+            _uof.Commit();
+            return Ok(updatedCharacter);
         }
 
         [HttpDelete]
         public ActionResult Delete(int id)
         {
-            return Ok(_repository.Delete(id));
+            var deletedCharacter = _uof.CharacterTypeRepository.Delete(id);
+            _uof.Commit();
+            return Ok(deletedCharacter);
         }
     }
 }

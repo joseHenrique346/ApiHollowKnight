@@ -27,27 +27,27 @@ namespace ApiHollowKnight.Repositories.Repositories
         public T Update(T entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
-            _context.SaveChanges();
+            //_context.SaveChanges();
             return entity;
         }
 
         public T Create(T entity)
         {
             _dbSet.Add(entity);
-            _context.SaveChanges();
+            //_context.SaveChanges();
             return entity;
         }
 
         public bool Delete(T entity)
         {
             _dbSet.Remove(entity);
-            _context.SaveChanges();
+            //_context.SaveChanges();
             return true;
         }
         public bool Delete(int id)
         {
             _dbSet.Remove(new T { Id = id });
-            _context.SaveChanges();
+            //_context.SaveChanges();
             return true;
         }
     }

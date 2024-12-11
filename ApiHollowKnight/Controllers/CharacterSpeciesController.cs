@@ -10,43 +10,49 @@ namespace ApiHollowKnight.Controllers
     public class CharacterSpeciesController : ControllerBase
     {
 
-        private readonly ICharacterSpeciesRepository _repository;
+        private readonly IUnitOfWork _uof;
 
-        public CharacterSpeciesController(ICharacterSpeciesRepository repository)
+        public CharacterSpeciesController(IUnitOfWork uof)
         {
-            _repository = repository;
+            _uof = uof;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<CharacterSpecies>> Get()
         {
-            var character = _repository.GetAll();
+            var character = _uof.CharacterSpeciesRepository.GetAll();
             return Ok(character);
         }
 
         [HttpGet("{id}")]
         public ActionResult<CharacterSpecies> Get(int id)
         {
-            var character = _repository.Get(id);
+            var character = _uof.CharacterSpeciesRepository.Get(id);
             return Ok(character);
         }
 
         [HttpPost]
         public ActionResult Post(CharacterSpecies character)
         {
-            return Ok(_repository.Create(character));
+            var createdCharacter = _uof.CharacterSpeciesRepository.Create(character);
+            _uof.Commit();
+            return Ok(createdCharacter);
         }
 
         [HttpPut]
         public ActionResult Put(CharacterSpecies character)
         {
-            return Ok(_repository.Update(character));
+            var updatedCharacter = _uof.CharacterSpeciesRepository.Update(character);
+            _uof.Commit();
+            return Ok(updatedCharacter);
         }
 
         [HttpDelete]
         public ActionResult Delete(int id)
         {
-            return Ok(_repository.Delete(id));
+            var deletedCharacter = _uof.CharacterSpeciesRepository.Delete(id);
+            _uof.Commit();
+            return Ok(deletedCharacter);
         }
     }
 }

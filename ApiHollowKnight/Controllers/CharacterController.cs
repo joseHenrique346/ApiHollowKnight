@@ -10,33 +10,34 @@ namespace ApiHollowKnight.Controllers
     [ApiController]
     public class CharacterController : ControllerBase
     {
-        private readonly ICharactersRepository _repository;
+        private readonly IUnitOfWork _uof;
 
-        public CharacterController(ICharactersRepository repository)
+        public CharacterController(IUnitOfWork uof)
         {
-             _repository = repository;
+             _uof = uof;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<Character>> Get()
         {
-            var character = _repository.GetAll();
+            var character = _uof.CharacterRepository.GetAll();
             return Ok(character);
         }
 
         [HttpGet("{id}")]
         public ActionResult<Character> Get(int id)
         {
-            var character = _repository.Get(id);
+            var character = _uof.CharacterRepository.Get(id);
             return Ok(character);
         }
 
         [HttpPost]
         public ActionResult Create([FromBody] InputCreateUpdateCharacters character)
         {
-            var createdCharacter = _repository.Create(new Character(" ", character.Description, character.Gender, 
+            var createdCharacter = _uof.CharacterRepository.Create(new Character(" ", character.Description, character.Gender, 
                                                       character.TypeId, null, character.SpeciesId, null, character.PlacesId, 
                                                       null, character.Health, character.Color, character.ImageUrl));
+            _uof.Commit();
 
             return Ok(new OutputCharacters(createdCharacter.Id, createdCharacter.Name, createdCharacter.Description,
                                             createdCharacter.Gender, createdCharacter.TypeId, createdCharacter.SpeciesId, 
@@ -47,25 +48,27 @@ namespace ApiHollowKnight.Controllers
         [HttpPut("{id}")]
         public ActionResult Update(int id, [FromBody] InputCreateUpdateCharacters character)
         {
-            var getCharacter = _repository.Get(id); 
+            var getCharacter = _uof.CharacterRepository.Get(id); 
              if (getCharacter is null)
             {
                 return NotFound();
             }
             getCharacter = Converter.Convert(getCharacter, character);
-            var updateCharacter = _repository.Update(getCharacter);
+            var updateCharacter = _uof.CharacterRepository.Update(getCharacter);
+            _uof.Commit();
             return Ok((OutputCharacters)getCharacter);
         }
 
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var categoria = _repository.Get(id);
+            var categoria = _uof.CharacterRepository.Get(id);
             if (categoria is null)
             {
                 return NotFound();
             }
-            var categoriaExcluida = _repository.Delete(categoria);
+            var categoriaExcluida = _uof.CharacterRepository.Delete(categoria);
+            _uof.Commit();
             return Ok(categoriaExcluida);
         }
     }

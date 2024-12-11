@@ -19,6 +19,7 @@ builder.Services.AddScoped<ICharacterSpeciesRepository, CharacterSpeciesReposito
 builder.Services.AddScoped<ICharacterTypeRepository, CharacterTypeRepository>();
 builder.Services.AddScoped<ICharactersRepository, CharacterRepository>();
 builder.Services.AddScoped<IPlacesRepository, PlacesRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
