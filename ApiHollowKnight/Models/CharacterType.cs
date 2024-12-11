@@ -5,11 +5,8 @@ using System.Text.Json.Serialization;
 namespace ApiHollowKnight.Models
 {
     [Table("CharactersTypes")]
-    public class CharacterType
+    public class CharacterType : BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [StringLength(20)]
         public string? Name { get; set; }

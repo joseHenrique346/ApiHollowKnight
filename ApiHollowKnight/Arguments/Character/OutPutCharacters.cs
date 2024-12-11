@@ -16,5 +16,6 @@ namespace ApiHollowKnight.Arguments.Character
         public decimal Health { get; set; } = health;
         public string Color { get; set; } = color;
         public string ImageURL { get; set; } = imageURL;
+        public string teste { get; set; }
     }
 }

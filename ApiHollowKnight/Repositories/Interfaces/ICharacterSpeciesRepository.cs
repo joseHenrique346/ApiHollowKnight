@@ -2,7 +2,7 @@
 
 namespace ApiHollowKnight.Repositories.Interfaces
 {
-    public interface ICharacterSpeciesRepository : IRepository<Character>
+    public interface ICharacterSpeciesRepository : IRepository<CharacterSpecies>
     {
     }
 }
