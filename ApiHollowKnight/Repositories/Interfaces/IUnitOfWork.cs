@@ -1,6 +1,5 @@
 ﻿using ApiHollowKnight.Models;
 using ApiHollowKnight.Repositories.Interfaces;
-
 namespace ApiHollowKnight.Repositories.Interfaces
 {
     public interface IUnitOfWork : IDisposable
