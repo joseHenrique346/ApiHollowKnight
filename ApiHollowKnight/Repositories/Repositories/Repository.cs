@@ -15,14 +15,14 @@ namespace ApiHollowKnight.Repositories.Repositories
             _dbSet = context.Set<T>();
         }
 
-        public async Task<List<T>> GetAllAsync()
+        public List<T> GetAll()
         {
-            return await _dbSet.AsNoTracking().ToListAsync();
+            return _dbSet.AsNoTracking().ToList();
         }
 
-        public async Task<T?> Get(int id)
+        public T? Get(int id)
         {
-            return await _dbSet.FindAsync(id);
+            return _dbSet.Find(id);
         }
         public T Update(T entity)
         {
